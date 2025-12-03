@@ -67,7 +67,7 @@ class CarSearchTests(BaseCase):
         self.assertContains(response, "A4")
         self.assertNotContains(response, "RS6")
 
-    def test_car_search_piece_of_name(self):
+    def test_car_search_piece_of_model(self):
         url = reverse("taxi:car-list")
         response = self.client.get(url, {"model": "4"})
         self.assertContains(response, "A4")
@@ -94,13 +94,13 @@ class DriverSearchTests(BaseCase):
             license_number="XYZ67890"
         )
 
-    def test_driver_search_full_name(self):
+    def test_driver_search_full_username(self):
         url = reverse("taxi:driver-list")
         response = self.client.get(url, {"username": "test_driver"})
         self.assertContains(response, "test_driver")
         self.assertNotContains(response, "tom_wilson")
 
-    def test_driver_search_piece_of_name(self):
+    def test_driver_search_piece_of_username(self):
         url = reverse("taxi:driver-list")
         response = self.client.get(url, {"username": "wilson"})
         self.assertContains(response, "tom_wilson")
